@@ -16,5 +16,5 @@ function P({ children }: React.PropsWithChildren) {
 }
 
 export function useMDXComponents(components: Record<string, React.ComponentType>) {
-    return { h1: H1, h2: H2, ...components, p: P };
+    return { h1: H1, ...components, p: P };
 }
