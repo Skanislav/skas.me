@@ -2,11 +2,13 @@
 // Pin the static export in `out/` to IPFS via Pinata and write the folder CID to `.cid`.
 //
 // Why this works for ENS/eth.limo root serving:
-// Pinata's `fileArray` derives each entry's in-directory path from `file.webkitRelativePath`
-// (see node_modules/pinata -> uploadFileArray). By setting that to each file's path *relative
-// to out/* (no wrapper prefix), the resulting CID's root IS the site root, so `ipfs://<cid>/`
-// resolves `index.html` directly. Leaving it unset would nest everything under a folder and
-// break root access.
+// Pinata's `fileArray` builds the IPFS directory from each entry's `file.webkitRelativePath`
+// (see node_modules/pinata -> uploadFileArray). Every file MUST sit under one common wrapper
+// folder, otherwise the `pinFileToIPFS` API rejects the upload with "More than one file
+// and/or directory was provided for pinning." Pinata returns the CID of that wrapper folder,
+// and since the wrapper IS the directory whose CID is returned, `ipfs://<cid>/` still resolves
+// `index.html` at the root (the wrapper name never appears in the path) — exactly like
+// `ipfs add -r out` returning the CID of `out` itself.
 //
 // Required env: PINATA_JWT
 // Optional env: PINATA_GATEWAY (dedicated gateway host, e.g. my-gw.mypinata.cloud)
@@ -17,6 +19,9 @@ import { join, relative, sep } from 'node:path'
 import { PinataSDK } from 'pinata'
 
 const OUT_DIR = 'out'
+// Common wrapper folder so Pinata sees a single directory (its name is consumed as the
+// returned CID's root and never appears in served URLs).
+const WRAPPER = 'site'
 const JWT = process.env.PINATA_JWT
 const GATEWAY = process.env.PINATA_GATEWAY
 
@@ -37,10 +42,10 @@ async function collectFiles(dir, base) {
       files.push(...(await collectFiles(full, base)))
       continue
     }
-    const rel = relative(base, full).split(sep).join('/')
+    // Path under the common wrapper, e.g. site/index.html, site/epf/index.html.
+    const rel = WRAPPER + '/' + relative(base, full).split(sep).join('/')
     const bytes = await readFile(full)
     const file = new File([bytes], entry.name)
-    // The in-directory path used to build the IPFS folder. Relative to out/ => CID root = site root.
     Object.defineProperty(file, 'webkitRelativePath', { value: rel })
     files.push(file)
   }
