@@ -1,0 +1,212 @@
+/* Reading-view typography — the markdown blocks from the design's article column.
+   Applied to MDX elements via mdx-components.tsx and to the helper components
+   (Callout / Figure / Quote) used inside posts. */
+.prose {
+    font-family: var(--font-newsreader), serif;
+}
+
+.p {
+    font-family: var(--font-newsreader), serif;
+    font-size: clamp(1.08rem, 2vw, 1.18rem);
+    line-height: 1.72;
+    color: var(--fn-ink-body);
+    margin: 0 0 22px;
+}
+
+/* First paragraph reads as the lede — larger and slightly darker. */
+.prose > .p:first-child {
+    font-size: clamp(1.18rem, 2.3vw, 1.34rem);
+    line-height: 1.6;
+    color: var(--fn-ink-lede);
+    margin-bottom: 24px;
+}
+
+.h {
+    font-family: var(--font-newsreader), serif;
+    font-weight: 600;
+    font-size: clamp(1.3rem, 2.6vw, 1.6rem);
+    letter-spacing: -0.01em;
+    color: var(--fn-ink);
+    margin: 36px 0 14px;
+}
+
+.list {
+    list-style: none;
+    margin: 6px 0 24px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+}
+
+.li {
+    display: flex;
+    gap: 13px;
+    font-family: var(--font-newsreader), serif;
+    font-size: clamp(1.05rem, 1.9vw, 1.16rem);
+    line-height: 1.6;
+    color: var(--fn-ink-body);
+}
+
+.li::before {
+    content: "—";
+    color: var(--fn-faint-3);
+    flex: 0 0 auto;
+}
+
+.blockquote {
+    margin: 28px 0;
+    padding: 2px 0 2px 22px;
+    border-left: 2px solid #d9d7d0;
+}
+
+.blockquote p {
+    font-family: var(--font-newsreader), serif;
+    font-style: italic;
+    font-size: clamp(1.18rem, 2.3vw, 1.36rem);
+    line-height: 1.5;
+    color: var(--fn-ink);
+    margin: 0;
+}
+
+.cite {
+    font-family: var(--font-space-mono), monospace;
+    font-size: 12px;
+    color: var(--fn-faint);
+    margin-top: 12px;
+}
+
+.link {
+    color: var(--fn-accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--fn-accent-soft);
+    transition: border-color 0.16s;
+}
+
+.link:hover {
+    border-bottom-color: var(--fn-accent);
+}
+
+/* Inline code */
+.inlineCode {
+    font-family: var(--font-space-mono), monospace;
+    font-size: 0.85em;
+    background: var(--fn-panel);
+    border: 1px solid var(--fn-panel-border);
+    border-radius: 4px;
+    padding: 1px 5px;
+    color: var(--fn-ink-soft);
+}
+
+/* Fenced code block — framed with a language label header. */
+.codeWrap {
+    margin: 26px 0;
+    border: 1px solid var(--fn-panel-border);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--fn-panel);
+}
+
+.codeHead {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 7px 13px;
+    border-bottom: 1px solid var(--fn-panel-border);
+}
+
+.codeLang {
+    font-family: var(--font-space-mono), monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--fn-faint);
+    text-transform: uppercase;
+}
+
+.pre {
+    margin: 0;
+    padding: 16px 18px;
+    overflow: auto;
+    font-family: var(--font-space-mono), monospace;
+    font-size: 0.8rem;
+    line-height: 1.75;
+    color: #44423d;
+}
+
+.pre code {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+/* Image placeholder figure (hatched box + mono caption). */
+.figure {
+    margin: 28px 0;
+}
+
+.figureBox {
+    height: clamp(170px, 28vw, 240px);
+    border: 1px solid var(--fn-panel-border);
+    border-radius: 8px;
+    background-color: var(--fn-panel);
+    background-image: repeating-linear-gradient(
+        135deg,
+        transparent,
+        transparent 9px,
+        rgba(0, 0, 0, 0.025) 9px,
+        rgba(0, 0, 0, 0.025) 10px
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.figureLabel {
+    font-family: var(--font-space-mono), monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--fn-faint);
+}
+
+.figureImg {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--fn-panel-border);
+    border-radius: 8px;
+    display: block;
+}
+
+.figcaption {
+    font-family: var(--font-space-mono), monospace;
+    font-size: 11px;
+    color: var(--fn-faint);
+    margin-top: 11px;
+    line-height: 1.5;
+}
+
+/* Periwinkle "NOTE" callout — the one accent in the reading view. */
+.callout {
+    margin: 26px 0;
+    border-left: 2px solid var(--fn-accent-soft);
+    background: var(--fn-accent-bg);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 18px;
+}
+
+.calloutLabel {
+    font-family: var(--font-space-mono), monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: var(--fn-accent-ink);
+    margin-bottom: 9px;
+}
+
+.calloutBody {
+    font-family: var(--font-newsreader), serif;
+    font-size: clamp(1.05rem, 1.9vw, 1.16rem);
+    line-height: 1.6;
+    color: var(--fn-ink-lede);
+    margin: 0;
+}

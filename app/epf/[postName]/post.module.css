@@ -1,0 +1,86 @@
+.main {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 5vw, 28px);
+}
+
+.backWrap {
+    padding-top: clamp(28px, 5vw, 48px);
+}
+
+.back {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: var(--font-space-mono), monospace;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: var(--fn-faint-2);
+    transition: color 0.16s;
+}
+
+.back:hover {
+    color: var(--fn-ink-soft);
+}
+
+.header {
+    padding: clamp(24px, 4vw, 38px) 0 clamp(20px, 3vw, 28px);
+    border-bottom: 1px solid var(--fn-hairline);
+    margin-bottom: clamp(28px, 4vw, 40px);
+}
+
+.eyebrow {
+    font-family: var(--font-space-mono), monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--fn-faint);
+    margin-bottom: 16px;
+}
+
+.title {
+    font-family: var(--font-newsreader), serif;
+    font-weight: 600;
+    font-size: clamp(1.9rem, 4.6vw, 2.7rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--fn-ink);
+    margin: 0;
+}
+
+.nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    justify-content: space-between;
+    margin: clamp(40px, 6vw, 68px) 0 clamp(44px, 7vw, 76px);
+    padding-top: 26px;
+    border-top: 1px solid var(--fn-hairline);
+}
+
+.navSlot {
+    min-width: 0;
+}
+
+.navSlotNewer {
+    text-align: right;
+}
+
+.navLabel {
+    font-family: var(--font-space-mono), monospace;
+    font-size: 11px;
+    color: var(--fn-faint);
+    margin-bottom: 5px;
+}
+
+.navTitle {
+    font-family: var(--font-newsreader), serif;
+    font-weight: 500;
+    font-size: 1.05rem;
+    color: var(--fn-ink);
+    line-height: 1.25;
+    transition: color 0.16s;
+}
+
+.navLink:hover .navTitle {
+    color: var(--fn-accent);
+}

@@ -1,0 +1,55 @@
+.header {
+    border-bottom: 1px solid var(--fn-hairline);
+}
+
+.inner {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 18px clamp(20px, 5vw, 28px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    cursor: pointer;
+    color: inherit;
+}
+
+.brandMark {
+    color: var(--fn-faint);
+}
+
+.wordmark {
+    font-family: var(--font-space-mono), monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--fn-ink-soft);
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-family: var(--font-space-mono), monospace;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: var(--fn-faint);
+}
+
+.navActive {
+    color: var(--fn-ink-soft);
+}
+
+.navInert {
+    cursor: pointer;
+    transition: color 0.16s;
+}
+
+.navInert:hover {
+    color: var(--fn-ink-soft);
+}

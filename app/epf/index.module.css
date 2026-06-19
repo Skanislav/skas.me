@@ -1,0 +1,127 @@
+.main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 5vw, 28px);
+}
+
+.masthead {
+    padding: clamp(44px, 8vw, 76px) 0 clamp(28px, 4vw, 40px);
+}
+
+.kicker {
+    font-family: var(--font-space-mono), monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--fn-faint);
+    margin-bottom: 18px;
+}
+
+.title {
+    font-family: var(--font-newsreader), serif;
+    font-weight: 500;
+    font-size: clamp(1.9rem, 4.5vw, 2.6rem);
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+    color: var(--fn-ink);
+    margin: 0;
+}
+
+.intro {
+    font-family: var(--font-newsreader), serif;
+    font-size: clamp(1.05rem, 2vw, 1.2rem);
+    line-height: 1.6;
+    color: var(--fn-muted);
+    margin: 18px 0 0;
+    max-width: 540px;
+}
+
+.list {
+    border-top: 1px solid var(--fn-hairline);
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px clamp(18px, 4vw, 32px);
+    align-items: baseline;
+    padding: clamp(18px, 2.6vw, 24px) clamp(4px, 1vw, 10px);
+    border-bottom: 1px solid var(--fn-hairline);
+    cursor: pointer;
+    transition: background 0.16s;
+}
+
+.row:hover {
+    background: var(--fn-panel);
+}
+
+.meta {
+    flex: 0 0 auto;
+    width: 88px;
+    font-family: var(--font-space-mono), monospace;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: var(--fn-faint);
+    line-height: 1.7;
+}
+
+.body {
+    flex: 1 1 320px;
+    min-width: 240px;
+}
+
+.postTitle {
+    font-family: var(--font-newsreader), serif;
+    font-weight: 500;
+    font-size: clamp(1.15rem, 2.2vw, 1.35rem);
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    color: var(--fn-ink);
+    margin: 0;
+}
+
+.summary {
+    font-family: var(--font-newsreader), serif;
+    font-size: clamp(1rem, 1.8vw, 1.08rem);
+    line-height: 1.5;
+    color: var(--fn-muted-2);
+    margin: 6px 0 0;
+}
+
+.readingTime {
+    flex: 0 0 auto;
+    font-family: var(--font-space-mono), monospace;
+    font-size: 11px;
+    color: var(--fn-faint-3);
+    line-height: 1.7;
+}
+
+.footer {
+    margin-top: clamp(40px, 6vw, 72px);
+    padding: 24px 0 56px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-space-mono), monospace;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: var(--fn-faint);
+}
+
+.footerLinks {
+    display: flex;
+    gap: 16px;
+}
+
+.footerLinks span,
+.footerLinks a {
+    cursor: pointer;
+    color: inherit;
+    transition: color 0.16s;
+}
+
+.footerLinks span:hover,
+.footerLinks a:hover {
+    color: var(--fn-muted);
+}

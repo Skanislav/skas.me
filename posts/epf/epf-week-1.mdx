@@ -1,0 +1,42 @@
+export const meta = {
+  label: 'W01',
+  week: '01',
+  title: 'Ð-day',
+  date: 'Jun 19',
+  dateLong: 'June 19, 2026',
+  readingTime: '~5 min',
+  summary: 'First week of the EPF — execution layer, good first issues, and post-quantum stealth addresses before settling on a direction.',
+  order: 1,
+}
+
+> Persistency > consistency
+
+## Intro
+
+This is a series of blog posts journaling my experience going through the EPF.
+
+## Starting up
+
+Since the beginning of the cohort I've pulled myself in different directions, starting from the [wiki](https://epf.wiki) and some initial intro into the [history of Ethereum](https://www.youtube.com/watch?v=WB6rOQCV-4U), as well as the beginning of Lightclient's intro into the execution layer ([link](https://www.youtube.com/watch?v=pniTkWo70OY)). I liked the simple explanation of [State Transition Functions](https://ethereum.org/developers/docs/evm/#the-ethereum-state-transition-function) and thought that dropping the whole block if one of the transactions is invalid had something interesting behind it, but I left that intuition for later. I also peeked at reports from previous cohorts and started writing my thoughts down to have more content for later.
+
+> To me it's interesting how exactly the execution client gets transactions from the pool during block building (what's the implementation of an efficient pop?). I did a Fibonacci Heap in C for a university project a few years ago, and AFAIK it's the fastest min-heap data structure and could be a potential project for me to work on.
+
+I also peeked at the [good first issues](https://gfi.bordel.wtf) source, but most of them were either picked up or someone had recently opened a PR or started working on something. I think at this point I finally realized that I'd been dropped in the pond and now it was my time to swim.
+
+I still hadn't figured out the exact project, language, or direction I'd want to take, so I just decided to look into different things I wasn't deeply interested in before, to find a direction. So far the [execution-specs](https://github.com/ethereum/execution-specs) look like a good place to start, but later I might need to settle between Rust and Go.
+
+Before receiving good news from Josh at the end of week 0, I was actually doing a little research on Post-Quantum stealth addresses. Because even if the signers were secure, the public key exchange as well as the PK derivation is still vulnerable to attacks. So I found an interesting recent paper from some Serbian folks, [Post-Quantum Stealth Address Protocols](https://arxiv.org/html/2501.13733v1), that I kept reading during the week. My highlights are here: [link](/highlights/2025-112.pdf).
+
+While reading the paper, it occurred to me that I knew +/- nothing about lattice-based cryptography, so I dived into it and ended up watching a talk about [Monero from DEFCON 2019](https://www.youtube.com/watch?v=aMOjQIV7Ul0) just to see how things had changed since then. The paper on PQ-SA that I attached above is a medium-hard read for non-technical people.
+
+As a side note: while browsing the Eth R&D Discord, I found a channel related to Frame Transactions ([8141](https://eips.ethereum.org/EIPS/eip-8141), also [7701](https://eips.ethereum.org/EIPS/eip-7701)) and started thinking about how these would practically improve the stealth address implementation and the UX. There are quite a few issues, including relaying, gas sponsoring, and discovery.
+
+To understand more about 8141, I decided to dive deeper into the execution-level implementation of 7702 authorization lists and [its tests](https://github.com/ethereum/execution-specs/blob/b314d18ec625660398343494f290df16a5fc315a/packages/testing/src/execution_testing/forks/forks/eips/prague/eip_7702.py#L24), as well as [another good source](https://steel.ethereum.foundation/docs/execution-specs/mainnet/library/execution_testing_test_types/?h=authorization#execution_testing.test_types.AuthorizationTuple).
+
+The other day I decided to check out reth's implementation of payload generation and was surprised to see a familiar interface for the Engine API: "getBestTx", which had bugged my mind a few days earlier.
+
+The paper on PQ Stealth Addresses turned out to be extremely interesting to me. It covered 3 potential implementations (there are more) with different benefits. My potential project could be about updating ERC-5564 with one more scheme to be more future-proof. Besides PQ security, the paper also reported an increase in parsing performance, which is a huge existing issue with stealth addresses that usually forces projects to introduce centralized choke points to simplify scanning and indexing.
+
+It was a fun first week, though. I've learned something new, attended 2 calls, read a bunch of EL code, and started getting initial ideas on what I'd be doing during the fellowship: Post-Quantum-resistant stealth addresses, or something related to frame transactions like testing or even implementing some parts of it.
+
+See ya next week!
